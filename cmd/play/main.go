@@ -23,7 +23,7 @@ func main() {
 	for !tictactoe.GameOver(cells) {
 		fmt.Println()
 		fmt.Print(grid.Format(cells))
-		fmt.Printf("%s ist am Zug, Feld: ", player)
+		fmt.Printf("\n%s ist am Zug, Feld: ", player)
 		var field int
 		_, err := fmt.Scan(&field)
 		if err != nil {
