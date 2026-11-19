@@ -84,7 +84,7 @@ func NextPlayer(player string) string {
 	if player == "O" {
 		return "X"
 	}
-	return ""
+	return "."
 }
 
 // Wins erwartet ein Spielfeld und ein Symbol und liefert `true`, wenn eine
@@ -92,6 +92,20 @@ func NextPlayer(player string) string {
 //
 // TODO
 func Wins(cells [][]string, player string) bool {
+	for i := range len(cells) {
+		if grid.AllEqual(grid.Row(cells, i), player) {
+			return true
+		}
+		if grid.AllEqual(grid.Col(cells, i), player) {
+			return true
+		}
+	}
+	if grid.AllEqual(grid.Diagonal(cells), player) {
+		return true
+	}
+	if grid.AllEqual(grid.AntiDiagonal(cells), player) {
+		return true
+	}
 	return false
 }
 

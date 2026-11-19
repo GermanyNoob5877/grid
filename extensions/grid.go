@@ -8,7 +8,15 @@ package extensions
 //
 // TODO
 func CountValue(cells [][]string, value string) int {
-	return 0
+	counter := 0
+	for i := range len(cells) {
+		for j := range len(cells[0]) {
+			if cells[i][j] == value {
+				counter = counter + 1
+			}
+		}
+	}
+	return counter
 }
 
 // Transpose erwartet ein Spielfeld und liefert ein neues Spielfeld,
@@ -18,7 +26,16 @@ func CountValue(cells [][]string, value string) int {
 //
 // TODO
 func Transpose(cells [][]string) [][]string {
-	return nil
+	TransposedArray := make([][]string, len(cells[0]))
+	for i := range TransposedArray {
+		TransposedArray[i] = make([]string, len(cells))
+	}
+	for i := range len(TransposedArray) {
+		for j := range len(TransposedArray[0]) {
+			TransposedArray[i][j] = cells[j][i]
+		}
+	}
+	return TransposedArray
 }
 
 // ContainsRun erwartet eine Linie, einen Wert und eine Länge `length` ab `1`
@@ -28,5 +45,16 @@ func Transpose(cells [][]string) [][]string {
 //
 // TODO
 func ContainsRun(line []string, value string, length int) bool {
+	counter := 0
+	for i := range len(line) {
+		if line[i] == value {
+			counter += 1
+		} else {
+			counter = 0
+		}
+		if counter == length {
+			return true
+		}
+	}
 	return false
 }

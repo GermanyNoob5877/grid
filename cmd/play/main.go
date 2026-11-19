@@ -57,4 +57,13 @@ func main() {
 //
 // TODO
 func printResult(cells [][]string) {
+	if tictactoe.Winner(cells) == "X" {
+		fmt.Println("X hat gewonnen!")
+	}
+	if tictactoe.Winner(cells) == "O" {
+		fmt.Println("O hat gewonnen!")
+	}
+	if tictactoe.IsFull(cells) == true && tictactoe.Winner(cells) == "" {
+		fmt.Println("Unentschieden.")
+	}
 }

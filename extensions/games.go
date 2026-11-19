@@ -10,7 +10,17 @@ package extensions
 //
 // TODO
 func FreeFields(cells [][]string) []int {
-	return nil
+	Feldnummer := 1
+	Ausgabe := []int{}
+	for i := range len(cells) {
+		for j := range len(cells[0]) {
+			if cells[i][j] == "." {
+				Ausgabe = append(Ausgabe, Feldnummer)
+			}
+			Feldnummer += 1
+		}
+	}
+	return Ausgabe
 }
 
 // DropPiece erwartet ein Spielfeld für Vier Gewinnt, die Nummer `col` einer
@@ -24,5 +34,18 @@ func FreeFields(cells [][]string) []int {
 //
 // TODO
 func DropPiece(cells [][]string, col int, piece string) bool {
+	for i := range len(cells) {
+		if i == len(cells)-1 && cells[i][col] == "." {
+			cells[i][col] = piece
+			return true
+		} else {
+			if cells[i][col] != "." && i > 0 {
+				if cells[i-1][col] == "." {
+					cells[(i - 1)][col] = piece
+					return true
+				}
+			}
+		}
+	}
 	return false
 }

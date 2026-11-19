@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"grid/grid"
+	"grid/tictactoe"
+)
+
 // Dieses Programm spielt eine Partie Tic Tac Toe aus einer Liste von Zügen nach,
 // z. B. um eine Partie zu analysieren oder zu testen. Es verwendet die Pakete
 // `grid` und `tictactoe`; das Programm `play` ist ähnlich aufgebaut.
@@ -19,4 +25,31 @@ func main() {
 //
 // TODO
 func replay(moves []int) {
+	spielfeld := tictactoe.NewBoard()
+	player := "X"
+	for i := range len(moves) {
+		if grid.Get(spielfeld, tictactoe.FieldToRow(moves[i]), tictactoe.FieldToCol(moves[i])) == "." && moves[i] < 10 && moves[i] > 0 {
+			grid.Set(spielfeld, tictactoe.FieldToRow(moves[i]), tictactoe.FieldToCol(moves[i]), player)
+			player = tictactoe.NextPlayer(player)
+		} else {
+			if grid.Get(spielfeld, tictactoe.FieldToRow(moves[i]), tictactoe.FieldToCol(moves[i])) != "." || moves[i] < 10 || moves[i] > 0 {
+				fmt.Println("Ungültiger Zug:", moves[i])
+			}
+		}
+		if tictactoe.GameOver(spielfeld) == true {
+			if tictactoe.Wins(spielfeld, "X") {
+				fmt.Println("X hat gewonnen!")
+				break
+			}
+			if tictactoe.Wins(spielfeld, "X") {
+				fmt.Println("X hat gewonnen!")
+				break
+			}
+			fmt.Println("Unentschieden.")
+			break
+		}
+
+	}
+	fmt.Println(grid.Format(spielfeld))
+	fmt.Println("Das Spiel ist noch nicht vorbei.")
 }

@@ -75,6 +75,7 @@ func Format(cells [][]string) string {
 		}
 		ausgabe = ausgabe + "\n" //Zeilenumbruch nach vollständiger Zeile
 	}
+	ausgabe = ausgabe[:len(ausgabe)-1]
 	return ausgabe
 }
 
