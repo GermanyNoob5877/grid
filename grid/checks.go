@@ -10,7 +10,12 @@ package grid
 //
 // TODO
 func AllEqual(line []string, value string) bool {
-	return false
+	for i := range len(line) {
+		if line[i] != value {
+			return false
+		}
+	}
+	return true
 }
 
 // Contains erwartet ein Spielfeld und einen Wert und liefert `true`,
@@ -18,5 +23,12 @@ func AllEqual(line []string, value string) bool {
 //
 // TODO
 func Contains(cells [][]string, value string) bool {
+	for i := range len(cells) {
+		for j := range len(cells[0]) {
+			if cells[i][j] == value {
+				return true
+			}
+		}
+	}
 	return false
 }

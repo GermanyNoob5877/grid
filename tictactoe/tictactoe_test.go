@@ -9,6 +9,20 @@ func ExampleNewBoard() {
 	// [[. . .] [. . .] [. . .]]
 }
 
+func ExampleFieldToCol() {
+	fmt.Println(FieldToCol(2))
+
+	// Output:
+	// 1
+}
+
+func ExampleFieldToRow() {
+	fmt.Println(FieldToRow(2))
+
+	// Output:
+	// 0
+}
+
 func ExamplePlace() {
 	cells := [][]string{{".", ".", "."}, {".", ".", "."}, {".", ".", "."}}
 	fmt.Println(Place(cells, 1, "X"))
@@ -60,10 +74,12 @@ func ExampleWinner() {
 	fmt.Printf("%q\n", Winner([][]string{{"X", "X", "X"}, {"O", "O", "."}, {".", ".", "."}}))
 	fmt.Printf("%q\n", Winner([][]string{{"X", "O", "."}, {"X", "O", "."}, {".", "O", "X"}}))
 	fmt.Printf("%q\n", Winner([][]string{{".", ".", "."}, {".", ".", "."}, {".", ".", "."}}))
+	fmt.Printf("%q\n", Winner([][]string{{"X", "O", "X"}, {"X", "O", "O"}, {"O", "X", "."}}))
 
 	// Output:
 	// "X"
 	// "O"
+	// ""
 	// ""
 }
 

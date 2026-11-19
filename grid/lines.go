@@ -21,7 +21,11 @@ func Row(cells [][]string, index int) []string {
 //
 // TODO
 func Col(cells [][]string, index int) []string {
-	return nil
+	output := make([]string, len(cells[index]))
+	for i := range len(cells) {
+		output[i] = cells[i][index]
+	}
+	return output
 }
 
 // Diagonal erwartet ein Spielfeld und liefert die Diagonale von links oben
@@ -30,7 +34,15 @@ func Col(cells [][]string, index int) []string {
 //
 // TODO
 func Diagonal(cells [][]string) []string {
-	return nil
+	rand := len(cells)
+	if len(cells) > len(cells[0]) {
+		rand = len(cells[0])
+	}
+	output := make([]string, rand)
+	for i := range rand {
+		output[i] = cells[i][i]
+	}
+	return output
 }
 
 // AntiDiagonal erwartet ein Spielfeld und liefert die Diagonale von rechts oben
@@ -39,5 +51,9 @@ func Diagonal(cells [][]string) []string {
 //
 // TODO
 func AntiDiagonal(cells [][]string) []string {
-	return nil
+	output := make([]string, len(cells))
+	for i := range len(cells) {
+		output[i] = cells[i][len(cells[0])-1-i]
+	}
+	return output
 }
